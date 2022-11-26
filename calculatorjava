@@ -6,12 +6,12 @@ git branch -M main
 git remote add origin https://github.com/Maksim97r/CalculatorJava.git
  git push - ты главный
  
+
 import java.util.Scanner;
 
 public class Main {
 
-    static String[] romanNumbers = new String[] {"I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"};
-    static String[] romanNumbers1 = new String[] {"O", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII", "XIII", "XIV", "XV", "XVI", "XVII", "XVIII", "XIX", "XX", "XXI", "XXII", "XXIII", "XXIV", "XXV", "XXVI", "XXVII", "XXVIII", "XXIX", "XXX", "XXXI", "XXXII", "XXXIII", "XXXIV", "XXXV", "XXXVI", "XXXVII", "XXXVIII", "XXXIX", "XL", "XLI", "XLII", "XLIII", "XLIV", "XLV", "XLVI", "XLVII", "XLVIII", "XLIX", "L", "LI", "LII", "LIII", "LIV", "LV", "LVI", "LVII", "LVIII", "LIX", "LX", "LXI", "LXII", "LXIII", "LXIV", "LXV", "LXVI", "LXVII", "LXVIII", "LXIX", "LXX", "LXXI", "LXXII", "LXXIII", "LXXIV", "LXXV", "LXXVI", "LXXVII", "LXXVIII", "LXXIX", "LXXX", "LXXXI", "LXXXII", "LXXXIII", "LXXXIV", "LXXXV", "LXXXVI", "LXXXVII", "LXXXVIII", "LXXXIX", "XC", "XCI", "XCII", "XCIII", "XCIV", "XCV", "XCVI", "XCVII", "XCVIII", "XCIX", "C"};
+    static String[] romanNumbers = new String[] {"O", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII", "XIII", "XIV", "XV", "XVI", "XVII", "XVIII", "XIX", "XX", "XXI", "XXII", "XXIII", "XXIV", "XXV", "XXVI", "XXVII", "XXVIII", "XXIX", "XXX", "XXXI", "XXXII", "XXXIII", "XXXIV", "XXXV", "XXXVI", "XXXVII", "XXXVIII", "XXXIX", "XL", "XLI", "XLII", "XLIII", "XLIV", "XLV", "XLVI", "XLVII", "XLVIII", "XLIX", "L", "LI", "LII", "LIII", "LIV", "LV", "LVI", "LVII", "LVIII", "LIX", "LX", "LXI", "LXII", "LXIII", "LXIV", "LXV", "LXVI", "LXVII", "LXVIII", "LXIX", "LXX", "LXXI", "LXXII", "LXXIII", "LXXIV", "LXXV", "LXXVI", "LXXVII", "LXXVIII", "LXXIX", "LXXX", "LXXXI", "LXXXII", "LXXXIII", "LXXXIV", "LXXXV", "LXXXVI", "LXXXVII", "LXXXVIII", "LXXXIX", "XC", "XCI", "XCII", "XCIII", "XCIV", "XCV", "XCVI", "XCVII", "XCVIII", "XCIX", "C"};
 
     public static int calc(String input) {
         String[] splitInput = input.split(" ");
@@ -46,7 +46,7 @@ public class Main {
                     case "+": {return (firstElementValueArabic + secondElementValueArabic);}
                     case "-": {return firstElementValueArabic - secondElementValueArabic;}
                     case "/": {return firstElementValueArabic / secondElementValueArabic;}
-                    case "* ": {return firstElementValueArabic * secondElementValueArabic;}
+                    case "*": {return firstElementValueArabic * secondElementValueArabic;}
                     default: {throw new ExpressionException("throws Exception //т.к. неизвестная операция");}
                 }
 
@@ -56,21 +56,21 @@ public class Main {
 
             }
 
-            } else if (firstElementType.equals("Roman")) {
+        } else if (firstElementType.equals("Roman")) {
             firstElementValueRoman = transformationRoman(firstElement);
             secondElementValueRoman = transformationRoman(secondElement);
             switch (operation) {
                 case "+": {return firstElementValueRoman + secondElementValueRoman;}
                 case "-": {if(firstElementValueRoman > secondElementValueRoman){return firstElementValueRoman - secondElementValueRoman;}else{throw new ExpressionException("trows Exception //т.к в римской системе нет отрицательных чисел");}}
                 case "/": {return firstElementValueRoman / secondElementValueRoman;}
-                case "* ": {return firstElementValueRoman * secondElementValueRoman;}
+                case "*": {return firstElementValueRoman * secondElementValueRoman;}
                 default: {throw new ExpressionException("throws Exception //т.к. неизвестная операция");}
 
             }
         } else{
             throw new ExpressionException("throws Exception //т.к. неизвесный тип элемента");
-                }
-            }
+        }
+    }
 
 
 
@@ -89,7 +89,7 @@ public class Main {
         }
 
         boolean isRoman = false;
-        for (int i = 0; i < romanNumbers.length; i++) {
+        for (int i = 0; i < 11; i++) {
             if (element.equals(romanNumbers[i])) {
                 isRoman = true;
                 break;
@@ -136,7 +136,7 @@ public class Main {
     static int transformationRoman(String roman){
         for(int i = 0; i < romanNumbers.length; i++){
             if (roman.equals(romanNumbers[i])){
-                return i + 1;
+                return i;
             }
         }
 
@@ -151,7 +151,7 @@ public class Main {
         Scanner input = new Scanner(System.in);
         String str = input.nextLine();
         if (checkType2(str).equals("Roman")) {
-            System.out.println(romanNumbers1[calc(str)]);
+            System.out.println(romanNumbers[calc(str)]);
         }
         else if (checkType2(str).equals("Arabic")){
             System.out.println(calc(str));
